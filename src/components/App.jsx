@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import Notiflix from 'notiflix';
 import Section from "./Section/Section";
 import ContactForm from "./ContactForm/ContactForm";
 import ContactList from "./ContactList/ContactList";
-
+import Filter from "./Filter/Filter";
 
 class App extends Component {
   state = {
@@ -15,12 +16,36 @@ class App extends Component {
     filter: "",
   };
 
-  formSubmitHandler = (data) => {
-    console.log(data);
+  formSubmitHandler = newContact => {
+    const isExists = this.state.contacts.some(
+      contact => contact.name === newContact.name
+    );
+    if (isExists) {
+      return Notiflix.Notify.warning(
+        'Enter correct information',
+        `${newContact.name} is already in contacts`,
+        'Ok'
+      );
+    }
+    this.setState(({ contacts }) => {
+      return { contacts: [newContact, ...contacts] };
+    });
+  };
+  deleteHandler = contactId => {
+    this.setState(({ contacts }) => {
+      return { contacts: contacts.filter(contact => contact.id !== contactId) };
+    });
+  };
+  filterHandler = (e) => {
+    const { value } = e.currentTarget;
+    this.setState({ filter: value });
   };
 
   render() {
-    const contacts = this.state.contacts;
+    const filter = this.state.filter.toLowerCase();
+    const contacts = this.state.contacts.filter((contact) =>
+      contact.name.toLowerCase().includes(filter)
+    );
 
     return (
       <>
@@ -29,7 +54,8 @@ class App extends Component {
         </Section>
 
         <Section title="Contacts">
-          <ContactList contacts={contacts} />
+          <Filter value={this.state.filter} onChange={this.filterHandler} />
+          <ContactList contacts={contacts} onDelete={this.deleteHandler} />
         </Section>
       </>
     );

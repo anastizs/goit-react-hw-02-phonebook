@@ -4,7 +4,6 @@ export const Form = styled.form`
   padding: 15px;
   border: 0.5px solid #371506;
   border-radius: 4px;
-  //   outline: 1px solid red;
 `;
 
 export const Label = styled.label`
@@ -20,6 +19,7 @@ export const Input = styled.input`
   width: calc(100% - 16px);
   border: 0.5px solid #371506;
   border-radius: 4px;
+  margin-top: 8px;
 `;
 
 export const Button = styled.button`

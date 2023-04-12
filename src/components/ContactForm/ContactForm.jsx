@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import { nanoid } from "nanoid";
+import { nanoid } from "nanoid";
 import { Form, Label, Input, Button } from "./ContactForm.styled";
 
 class ContactForm extends Component {
@@ -18,7 +18,13 @@ class ContactForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    this.props.onSubmit(this.state);
+    const { name, number } = e.currentTarget.elements;
+    const newContact = {
+      id: nanoid(),
+      name: name.value,
+      number: number.value,
+    };
+    this.props.onSubmit(newContact);
 
     this.reset();
   };
