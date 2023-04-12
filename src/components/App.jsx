@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Section from "./Section/Section";
 import ContactForm from "./ContactForm/ContactForm";
 import ContactList from "./ContactList/ContactList";
-// import { nanoid } from "nanoid";
+
 
 class App extends Component {
   state = {
@@ -13,10 +13,11 @@ class App extends Component {
       { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
     ],
     filter: "",
-    name: "",
-    number: "",
   };
-  handleInputNameChange = (evt) => {};
+
+  formSubmitHandler = (data) => {
+    console.log(data);
+  };
 
   render() {
     const contacts = this.state.contacts;
@@ -24,7 +25,7 @@ class App extends Component {
     return (
       <>
         <Section title="Phonebook">
-          <ContactForm/>
+          <ContactForm onSubmit={this.formSubmitHandler} />
         </Section>
 
         <Section title="Contacts">
