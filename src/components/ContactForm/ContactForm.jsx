@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from "react";
 import { nanoid } from "nanoid";
 import { Form, Label, Input, Button } from "./ContactForm.styled";
