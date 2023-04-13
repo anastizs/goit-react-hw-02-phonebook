@@ -18,13 +18,11 @@ class App extends Component {
 
   formSubmitHandler = (newContact) => {
     const isExists = this.state.contacts.some(
-      (contact) => contact.name === newContact.name
+      (contact) => contact.name.toLowerCase() === newContact.name.toLowerCase()
     );
     if (isExists) {
       return Notiflix.Notify.warning(
-        "Enter correct information",
-        `${newContact.name} is already in contacts`,
-        "Ok"
+        `${newContact.name} is already in contacts`
       );
     }
     this.setState(({ contacts }) => {
