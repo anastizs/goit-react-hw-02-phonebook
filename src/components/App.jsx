@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Notiflix from 'notiflix';
+import Notiflix from "notiflix";
 import Section from "./Section/Section";
 import ContactForm from "./ContactForm/ContactForm";
 import ContactList from "./ContactList/ContactList";
@@ -16,24 +16,26 @@ class App extends Component {
     filter: "",
   };
 
-  formSubmitHandler = newContact => {
+  formSubmitHandler = (newContact) => {
     const isExists = this.state.contacts.some(
-      contact => contact.name === newContact.name
+      (contact) => contact.name === newContact.name
     );
     if (isExists) {
       return Notiflix.Notify.warning(
-        'Enter correct information',
+        "Enter correct information",
         `${newContact.name} is already in contacts`,
-        'Ok'
+        "Ok"
       );
     }
     this.setState(({ contacts }) => {
       return { contacts: [newContact, ...contacts] };
     });
   };
-  deleteHandler = contactId => {
+  deleteHandler = (contactId) => {
     this.setState(({ contacts }) => {
-      return { contacts: contacts.filter(contact => contact.id !== contactId) };
+      return {
+        contacts: contacts.filter((contact) => contact.id !== contactId),
+      };
     });
   };
   filterHandler = (e) => {

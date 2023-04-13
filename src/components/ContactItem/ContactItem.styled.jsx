@@ -3,18 +3,26 @@ import styled from "@emotion/styled";
 export const Item = styled.li`
   display: flex;
   gap: 16px;
-  justify-content: space-between;
   align-items: center;
 `;
 
-export const Text = styled.p`
+export const TextName = styled.p`
+  width: 144px;
   padding: 0;
   margin: 0;
 `;
+export const TextTel = styled.p`
+  width: 124px;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0;
+  margin: 0;
+`;
+
 export const Button = styled.button`
   padding: 0;
   display: block;
-  margin: 5px;
+  margin: 5px 5px 5px auto;
   width: 60px;
   height: 30px;
   outline: none;
